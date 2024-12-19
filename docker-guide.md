@@ -20,7 +20,7 @@ Build the Docker container:
 ---
 
 ### Step 3: Run the Container for the First Time (Requires Internet)
-1. Run the container interactively to verify it works and install dependencies:
+1. Run the container interactively to verify it works:
    ```bash
    docker run -it --rm offline-mina-signer "test mnemonic"
    ```
