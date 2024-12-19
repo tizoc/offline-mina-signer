@@ -64,7 +64,7 @@ function deriveMinaPrivateKey(mnemonic, accountIndex, addressIndex) {
   const privateKeyBase58 = deriveMinaPrivateKey(mnemonic, accountIndex, ADDRESS_INDEX);
   const publicKey = client.derivePublicKey(privateKeyBase58);
 
-  console.log("Mina Private Key:", privateKeyBase58);
+  //console.log("Mina Private Key:", privateKeyBase58);
   console.log("Mina Public Key:", publicKey);
 
   if (messageToSign) {

@@ -70,7 +70,6 @@ node index.mjs "your mnemonic" "optional message" 3
    ```
    **Output**:
    ```
-   Mina Private Key: EKEZR2TCrbFRyN94roqjZUCu1PDpDuKnN2sg8sZLep9Jo1TYZZ3E
    Mina Public Key: B62qpqCoBci3mKNrfCnLkKS2SSV9QyrPbPBABe4stVWnRRfkG8sn3t4
    ```
 
@@ -80,7 +79,6 @@ node index.mjs "your mnemonic" "optional message" 3
    ```
    **Output**:
    ```
-   Mina Private Key: EKEZR2TCrbFRyN94roqjZUCu1PDpDuKnN2sg8sZLep9Jo1TYZZ3E
    Mina Public Key: B62qpqCoBci3mKNrfCnLkKS2SSV9QyrPbPBABe4stVWnRRfkG8sn3t4
    Message: hello mina
    Signature field: 9052086882362500211121293548326467096160846808525301576969879446919825085086
