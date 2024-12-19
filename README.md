@@ -56,6 +56,12 @@ Run the application using the following command:
 node index.mjs "your mnemonic" "optional message"
 ```
 
+By default, the account index is set to `0`. To specify a different account index, pass it as a third parameter:
+
+```bash
+node index.mjs "your mnemonic" "optional message" 3
+```
+
 ### Example
 
 1. **Derive Keys Only**:
