@@ -31,7 +31,7 @@ This application derives Mina-compatible private and public keys from a mnemonic
 
 ## 🚨 **Looking for a more Secure Setup?** 🚨
 
-To run this script inside a disposable and secure Docker container, follow our **[Docker Guide](docker-guide.md)**.  
+To run this script inside a disposable Docker container, follow our **[Docker Guide](docker-guide.md)**.  
 This guide includes step-by-step instructions for setting up and running the script offline in a more isolated environment to protect sensitive data.
 
 **🔗 Click here: [Docker Guide](docker-guide.md)**
