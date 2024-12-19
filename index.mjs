@@ -8,7 +8,6 @@ import Client from 'mina-signer';
 
 const MINA_COIN_TYPE = 12586;
 const PURPOSE = 44;
-const ACCOUNT_INDEX = 0;
 const ADDRESS_INDEX = 0;
 
 const bip32 = BIP32Factory(ecc);
@@ -49,14 +48,20 @@ function deriveMinaPrivateKey(mnemonic, accountIndex, addressIndex) {
 (async () => {
   const args = process.argv.slice(2);
   if (args.length < 1) {
-    console.error("Usage: node index.mjs \"mnemonic\" [message]");
+    console.error("Usage: node index.mjs \"mnemonic\" [message] [accountIndex]");
     process.exit(1);
   }
 
   const mnemonic = args[0];
   const messageToSign = args[1];
+  const accountIndex = args.length > 2 ? parseInt(args[2], 10) : 0; // Default account index is 0
 
-  const privateKeyBase58 = deriveMinaPrivateKey(mnemonic, ACCOUNT_INDEX, ADDRESS_INDEX);
+  if (isNaN(accountIndex) || accountIndex < 0) {
+    console.error("Invalid account index. Must be a non-negative integer.");
+    process.exit(1);
+  }
+
+  const privateKeyBase58 = deriveMinaPrivateKey(mnemonic, accountIndex, ADDRESS_INDEX);
   const publicKey = client.derivePublicKey(privateKeyBase58);
 
   console.log("Mina Private Key:", privateKeyBase58);
