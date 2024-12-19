@@ -1,5 +1,24 @@
 # Offline Mina Message Signer
 
+---
+
+## ⚠️ WARNING: USE AT YOUR OWN RISK ⚠️
+
+**IMPORTING YOUR SEED PHRASE INTO THIS SCRIPT CAN BE VERY DANGEROUS.**
+- Your **seed phrase** is the master key to all your accounts and funds. If it is exposed, anyone can gain full access to your assets.
+- Running this script on a compromised or online machine increases the risk of your seed phrase being leaked.
+- Only use this script **offline** on a secure, trusted device.
+
+### Best Practices:
+1. **Do not use your main wallet seed phrase.** Create a test wallet with a new seed phrase for experimenting with this script.
+2. **Run the script offline.** Disconnect from the internet before running the script to reduce the risk of unauthorized access.
+3. **Delete the script and any temporary files immediately after use.**
+4. **Understand the risks** before proceeding.
+
+---
+
+## Overview
+
 This application derives Mina-compatible private and public keys from a mnemonic and signs messages offline. It uses the `mina-signer` library for generating and verifying Mina keys and signatures.
 
 ## Features
