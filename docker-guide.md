@@ -66,12 +66,23 @@ This step is essential to improve the security of your seed phrase and prevent u
 - Disable automatic screenshots/screen recording
 
 **🔒 Why is this important?**
-- Being offline prevents your sensitive data (such as the mnemonic or private keys) from being intercepted by malicious actors or malware.
+- Network isolation: Being offline prevents sensitive data interception
+- Screen security:
+  - Sleep/hibernation can write memory contents to disk
+  - Wake-up could expose sensitive data on screen
+  - System screenshots might automatically capture seed phrase
+- Memory security:
+  - Avoid swap file exposure of sensitive data
+  - Prevent memory dumps during sleep/hibernate
+  - Clear terminal to remove data from RAM
 
 1. **Disconnect your machine from the internet**.
 2. Start a fresh, disposable container to run the script offline:
    ```bash
-   docker run --read-only --tmpfs /tmp:rw,size=64M,noexec -it --rm --entrypoint /bin/bash offline-mina-signer
+   docker run --read-only --tmpfs /tmp:rw,size=64M,noexec \
+      --ipc=private \
+      --security-opt no-new-privileges \
+      -it --rm --entrypoint /bin/bash offline-mina-signer
    # And then inside the container run
    node index.mjs "your mnemonic" "optional message" > /tmp/signer-output; clear; printf '\e[3J'; cat /tmp/signer-output
    # Then exit the container
