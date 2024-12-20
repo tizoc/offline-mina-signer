@@ -4,7 +4,7 @@ A command-line tool to derive Mina keys and sign messages offline.
 
 ---
 
-## ⚠️ WARNING: USE AT YOUR OWN RISK ⚠️
+## ⚠️ WARNING: UNTESTED. DO YOUR OWN RESEARCH. USE AT YOUR OWN RISK ⚠️
 
 **IMPORTING YOUR SEED PHRASE INTO THIS SCRIPT CAN BE VERY DANGEROUS.**
 - Your **seed phrase** is the master key to all your accounts and funds. If it is exposed, anyone can gain full access to your assets.
@@ -34,7 +34,7 @@ This application derives Mina-compatible private and public keys from a mnemonic
 ## 🚨 **Recommended Setup** 🚨
 
 To run this script inside a disposable Docker container, follow the **[Docker Guide](docker-guide.md)**.  
-This guide includes step-by-step instructions for setting up and running the script offline in a more isolated, disposable environment to protect sensitive data.
+That guide includes step-by-step instructions for setting up and running the script offline in a more isolated, disposable environment to protect sensitive data.
 
 ---
 
@@ -68,76 +68,6 @@ Running this script directly on the host machine is not recommended due to the r
    `node index.mjs ... > signer-output; clear; printf '\e[3J'; cat signer-output`
 
 **Proceed with caution.**
-
-## Prerequisites
-
-- Node.js.
-- NPM or Yarn installed on your system.
-
----
-
-## Installation
-
-1. Clone the repository or download the source code.
-2. Navigate to the project directory.
-3. Install the required dependencies:
-
-   ```bash
-   npm install
-   ```
-
----
-
-## Usage
-
-```bash
-node index.mjs "your mnemonic phrase" [message] [accountIndex] [passphrase] [--show-private-key]
-```
-
-### Options
-- `mnemonic`: Your 12-word mnemonic phrase (required)
-- `message`: Message to sign (optional)
-- `accountIndex`: Account index to derive (optional, defaults to 0)
-- `passphrase`: BIP39 passphrase (optional)
-- `--show-private-key`: Display the private key (optional, use with caution)
-
-By default, the account index is set to `0`. To specify a different account index, pass it as a third parameter:
-
-```bash
-node index.mjs "your mnemonic" "optional message" 3
-```
-
-By default, the account don't have passphrase. To specify passphrase pass it as a forth parameter:
-
-```bash
-node index.mjs "your mnemonic" "optional message" 0 "your passphrase"
-```
-
-### Example
-
-1. **Derive Keys Only**:
-   ```bash
-   node index.mjs "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about" 
-   ```
-   **Output**:
-   ```
-   Mina Public Key: B62qpqCoBci3mKNrfCnLkKS2SSV9QyrPbPBABe4stVWnRRfkG8sn3t4
-   ```
-
-2. **Sign a Message**:
-   ```bash
-   node index.mjs "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about" "hello mina"
-   ```
-   **Output**:
-   ```
-   Mina Public Key: B62qpqCoBci3mKNrfCnLkKS2SSV9QyrPbPBABe4stVWnRRfkG8sn3t4
-   Message: hello mina
-   Signature field: 9052086882362500211121293548326467096160846808525301576969879446919825085086
-   Signature scalar:    15338095341319804139308033170764314134470035736709448089680152939796145172060
-   Message verified: true
-   ```
-
----
 
 ## Dependencies
 

@@ -1,8 +1,25 @@
 # Offline Docker Guide
 
+⚠️ WARNING: UNTESTED. DO YOUR OWN RESEARCH. USE AT YOUR OWN RISK ⚠️
+
 ## Using the Script Inside a Docker Container
 
 Follow these instructions to set up and use the script inside a disposable Docker container.
+
+### Step 0: Get the code from this repository
+
+Get the code using one of these methods:
+
+```bash
+# Option 1: Clone with git
+git clone https://github.com/tizoc/offline-mina-signer.git
+cd offline-mina-signer
+
+# Option 2: Download and extract
+curl -LO https://github.com/tizoc/offline-mina-signer/archive/refs/heads/master.zip
+unzip master.zip
+cd offline-mina-signer-main
+```
 
 ### Step 1: Preparation (Requires Internet)
 
@@ -60,6 +77,19 @@ This step is essential to improve the security of your seed phrase and prevent u
    - If you need to use a specific account index (other than the default 0), provide it as a third argument. If you’re unsure about this, it’s safe to skip this step.
 
 3. The output will show your public key, and (if a message is provided) the signature.
+
+### Usage
+
+```bash
+docker run --read-only -it --rm offline-mina-signer "your mnemonic phrase" [message] [accountIndex] [passphrase] [--show-private-key]
+```
+
+#### Options
+- `mnemonic`: Your 12-word mnemonic phrase (required)
+- `message`: Message to sign (optional)
+- `accountIndex`: Account index to derive (optional, defaults to 0)
+- `passphrase`: BIP39 passphrase (optional)
+- `--show-private-key`: Display the private key (optional, use with caution)
 
 ---
 
