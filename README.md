@@ -69,6 +69,12 @@ By default, the account index is set to `0`. To specify a different account inde
 node index.mjs "your mnemonic" "optional message" 3
 ```
 
+By default, the account don't have passphrase. To specify passphrase pass it as a forth parameter:
+
+```bash
+node index.mjs "your mnemonic" "optional message" 0 "your passphrase"
+```
+
 ### Example
 
 1. **Derive Keys Only**:
