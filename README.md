@@ -36,6 +36,35 @@ This guide includes step-by-step instructions for setting up and running the scr
 
 ---
 
+## ⚠️ **Important Security Notice** ⚠️
+
+Setting up and running this script directly on the host machine is **strongly discouraged**. Here's why:
+
+### 🛑 Risks of Running on the Host
+- **Compromised Dependencies**: If any `npm` dependency is compromised or malicious, it could gain access to your sensitive data, including your mnemonic and private keys.
+- **Persistent Environment**: Once installed on your host machine, dependencies or files may linger even after you finish running the script, increasing the risk of leaks or breaches.
+
+### ✅ Why Docker Is Safer
+Using the Docker setup ensures:
+1. **Isolated Environment**: All dependencies are installed in a disposable, isolated container that is separate from your host machine.
+2. **Ephemeral Setup**: The container is deleted after use (`--rm` flag), leaving no trace of your mnemonic, keys, or any installed dependencies on your system.
+3. **Minimal Risk**: Even if an `npm` dependency is compromised, it operates only within the isolated Docker environment, reducing the risk of affecting your host machine or other applications.
+
+### 🔒 **Recommendation**
+To maximize security, always use the **[Docker Guide](docker-guide.md)** to set up and run this script inside a disposable Docker container. Avoid running it directly on your host machine.
+
+---
+
+### ⚠️ **If You Decide to Go Without Docker...**
+
+Running this script directly on the host machine is not recommended due to the risks outlined above. However, if Docker cannot be used and proceeding without it is necessary, follow the following instructions carefully.
+
+- Ensure the machine is online **only while installing dependencies** and disconnect from the internet **before running the script**.
+- Use a trusted, secure environment with minimal risk of malware or compromise.
+- Avoid using a sensitive or primary mnemonic.
+
+**Proceed with caution.**
+
 ## Prerequisites
 
 - Node.js.
