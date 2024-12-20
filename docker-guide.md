@@ -42,7 +42,7 @@ Build the Docker container:
 ### Step 3: Run the Container for the First Time (Requires Internet)
 1. Run the container interactively to verify it works:
    ```bash
-   docker run --read-only -it --rm offline-mina-signer "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about"
+   docker run --read-only --log-driver=none -it --rm offline-mina-signer "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about"
    ```
 
    Output:
@@ -83,6 +83,7 @@ This step is essential to improve the security of your seed phrase and prevent u
 2. Start a fresh, disposable container to run the script offline:
    ```bash
    docker run --read-only --tmpfs /tmp:rw,size=64M,noexec \
+      --log-driver=none \
       --ipc=private \
       --security-opt no-new-privileges \
       -it --rm --entrypoint /bin/bash offline-mina-signer
@@ -105,7 +106,7 @@ This step is essential to improve the security of your seed phrase and prevent u
 ### Usage
 
 ```bash
-docker run --read-only -it --rm offline-mina-signer "your mnemonic phrase" [message] [accountIndex] [passphrase] [--show-private-key]
+node index.mjs "your mnemonic phrase" [message] [accountIndex] [passphrase] [--show-private-key]
 ```
 
 #### Options
@@ -114,36 +115,6 @@ docker run --read-only -it --rm offline-mina-signer "your mnemonic phrase" [mess
 - `accountIndex`: Account index to derive (optional, defaults to 0)
 - `passphrase`: BIP39 passphrase (optional)
 - `--show-private-key`: Display the private key (optional, use with caution)
-
----
-
-### Example Workflow
-
-#### 1. First Run (Online, without real seed phrase):
-```bash
-docker build -t offline-mina-signer .
-docker run --read-only -it --rm offline-mina-signer "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about"
-```
-**Output:**
-```plaintext
-Mina Public Key: B62qpqCoBci3mKNrfCnLkKS2SSV9QyrPbPBABe4stVWnRRfkG8sn3t4
-```
-
-#### 2. Second Run (Offline, with real seed phrase):
-1. Disconnect from the internet.
-2. Run the same command in a fresh container (clearing the input immediately from screen):
-   ```bash
-   docker run --read-only -it --rm offline-mina-signer "oval episode milk chimney rescue cabbage settle speak axis similar flip victory" "hello mina" > signer-output; clear; printf '\e[3J'; cat signer-output
-   ```
-
-**Output:**
-```plaintext
-Mina Public Key: B62qo7BiXEN2FUjrpieUTPFPi8VyQqtMdCaCk9moJqLhnG18L7zLAgy
-Message: hello mina
-Signature field: 25507160ba42e83e0eeea56c7a88b54433cf477b6fc58ec594ee590c081a1055
-Signature scalar: f66b68d4d6c5f42ff981452e1c44735f59c3a2957aa48a08fc08ce03737d7e02
-Message verified: true
-```
 
 ---
 
