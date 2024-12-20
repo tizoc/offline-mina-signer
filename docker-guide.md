@@ -68,7 +68,7 @@ This step is essential to improve the security of your seed phrase and prevent u
 #### 1. First Run (Online, without real seed phrase):
 ```bash
 docker build -t offline-mina-signer .
-docker run -it --rm offline-mina-signer "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about"
+docker run --read-only -it --rm offline-mina-signer "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about"
 ```
 **Output:**
 ```plaintext
