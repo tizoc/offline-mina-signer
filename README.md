@@ -19,6 +19,14 @@ A command-line tool to derive Mina keys and sign messages offline.
 
 ---
 
+## ⚠️ DISCLAIMER
+
+This software is provided "as-is", without any express or implied warranty. In no event will the authors be held liable for any damages arising from the use of this software. By using this tool, you accept all risks and responsibility for any resulting outcomes.
+
+This software has not undergone a security audit and should be used with caution, especially when handling sensitive cryptographic material.
+
+---
+
 ## Overview
 
 This application derives Mina-compatible private and public keys from a mnemonic and signs messages offline. It uses the `mina-signer` library for generating and verifying Mina keys and signatures.
