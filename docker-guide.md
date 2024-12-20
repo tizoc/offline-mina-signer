@@ -22,7 +22,7 @@ Build the Docker container:
 ### Step 3: Run the Container for the First Time (Requires Internet)
 1. Run the container interactively to verify it works:
    ```bash
-   docker run -it --rm offline-mina-signer "test mnemonic"
+   docker run --read-only -it --rm offline-mina-signer "test mnemonic"
    ```
 
    Output:
@@ -52,7 +52,7 @@ This step is essential to improve the security of your seed phrase and prevent u
 1. **Disconnect your machine from the internet**.
 2. Start a fresh, disposable container to run the script offline:
    ```bash
-   docker run -it --rm offline-mina-signer "your mnemonic" "optional message"
+   docker run --read-only -it --rm offline-mina-signer "your mnemonic" "optional message"
    ```
 
    - Replace `"your mnemonic"` with your 12- or 24-word seed phrase.
