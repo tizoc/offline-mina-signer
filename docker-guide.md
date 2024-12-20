@@ -118,9 +118,16 @@ node index.mjs "your mnemonic phrase" [message] [accountIndex] [passphrase] [--s
 
 ---
 
-### Security Notes
-- **Internet Connection**: Only connect to the internet when building the container and verifying it for the first time. After that, disconnect your system.
-- **Ephemeral Container**: The `--rm` flag ensures the container is deleted after use. No data is stored persistently.
-- **Offline Use**: Ensure your system is offline when importing sensitive seed phrases or signing messages.
+### Security Considerations
 
-By following this process, you can use the script in an more isolated and disposable environment.
+| Risk | Impact | Mitigation |
+|------|---------|------------|
+| Network exposure | Seed phrase interception | - Offline usage required<br>- Network verification (`ping` test) |
+| Container logs | Command history exposure | - `--log-driver=none` flag<br>- `--rm` flag for container cleanup |
+| Memory leaks | Sensitive data in RAM | - `--tmpfs` mount for temporary storage<br>- `--ipc=private` for memory isolation |
+| Privilege escalation | Container breakout | - `--read-only` filesystem<br>- `--security-opt no-new-privileges` |
+| Screen capture | Seed phrase visibility | - Disable screenshots/recording<br>- Clear screen after use |
+| System sleep | Memory dumps to disk | - Disable sleep/hibernate during use<br>- Complete operation quickly |
+
+Each security feature is mandatory - do not skip or modify the protection flags.
+
