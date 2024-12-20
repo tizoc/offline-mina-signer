@@ -1,5 +1,7 @@
 # Offline Mina Message Signer
 
+A command-line tool to derive Mina keys and sign messages offline.
+
 ---
 
 ## ⚠️ WARNING: USE AT YOUR OWN RISK ⚠️
@@ -86,11 +88,16 @@ Running this script directly on the host machine is not recommended due to the r
 
 ## Usage
 
-Run the application using the following command:
-
 ```bash
-node index.mjs "your mnemonic" "optional message"
+node index.mjs "your mnemonic phrase" [message] [accountIndex] [passphrase] [--show-private-key]
 ```
+
+### Options
+- `mnemonic`: Your 12-word mnemonic phrase (required)
+- `message`: Message to sign (optional)
+- `accountIndex`: Account index to derive (optional, defaults to 0)
+- `passphrase`: BIP39 passphrase (optional)
+- `--show-private-key`: Display the private key (optional, use with caution)
 
 By default, the account index is set to `0`. To specify a different account index, pass it as a third parameter:
 

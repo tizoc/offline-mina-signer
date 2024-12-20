@@ -50,15 +50,18 @@ function deriveMinaPrivateKey(mnemonic, accountIndex, addressIndex, passphrase =
 
 (async () => {
   const args = process.argv.slice(2);
-  if (args.length < 1) {
-    console.error("Usage: node index.mjs \"mnemonic\" [message] [accountIndex] [passphrase]");
+  const showPrivateKey = args.includes('--show-private-key');
+  const filteredArgs = args.filter(arg => arg !== '--show-private-key');
+
+  if (filteredArgs.length < 1) {
+    console.error("Usage: node index.mjs \"mnemonic\" [message] [accountIndex] [passphrase] [--show-private-key]");
     process.exit(1);
   }
 
-  const mnemonic = args[0];
-  const messageToSign = args[1];
-  const accountIndex = args.length > 2 ? parseInt(args[2], 10) : 0; // Default account index is 0
-  const passphrase = args.length > 3 ? args[3] : ''; // Optional passphrase
+  const mnemonic = filteredArgs[0];
+  const messageToSign = filteredArgs[1];
+  const accountIndex = filteredArgs.length > 2 ? parseInt(filteredArgs[2], 10) : 0;
+  const passphrase = filteredArgs.length > 3 ? filteredArgs[3] : '';
 
   if (isNaN(accountIndex) || accountIndex < 0) {
     console.error("Invalid account index. Must be a non-negative integer.");
@@ -69,7 +72,9 @@ function deriveMinaPrivateKey(mnemonic, accountIndex, addressIndex, passphrase =
     const privateKeyBase58 = deriveMinaPrivateKey(mnemonic, accountIndex, ADDRESS_INDEX, passphrase);
     const publicKey = client.derivePublicKey(privateKeyBase58);
 
-    //console.log("Mina Private Key:", privateKeyBase58);
+    if (showPrivateKey) {
+      console.log("Mina Private Key:", privateKeyBase58);
+    }
     console.log("Mina Public Key:", publicKey);
 
     if (messageToSign) {
