@@ -22,13 +22,13 @@ Build the Docker container:
 ### Step 3: Run the Container for the First Time (Requires Internet)
 1. Run the container interactively to verify it works:
    ```bash
-   docker run --read-only -it --rm offline-mina-signer "test mnemonic"
+   docker run --read-only -it --rm offline-mina-signer "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about"
    ```
 
    Output:
 
    ```
-   Mina Public Key: B62qkhcVTKNmw6WFqm7dsHgpJidToEdG2mVkLG1LGxJhXrbkJTfq4HC
+   Mina Public Key: B62qpqCoBci3mKNrfCnLkKS2SSV9QyrPbPBABe4stVWnRRfkG8sn3t4
    ```
 
 2. Once you confirm it works, you can disconnect from the internet.
