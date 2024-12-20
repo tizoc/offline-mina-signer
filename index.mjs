@@ -65,19 +65,24 @@ function deriveMinaPrivateKey(mnemonic, accountIndex, addressIndex, passphrase =
     process.exit(1);
   }
 
-  const privateKeyBase58 = deriveMinaPrivateKey(mnemonic, accountIndex, ADDRESS_INDEX, passphrase);
-  const publicKey = client.derivePublicKey(privateKeyBase58);
+  try {
+    const privateKeyBase58 = deriveMinaPrivateKey(mnemonic, accountIndex, ADDRESS_INDEX, passphrase);
+    const publicKey = client.derivePublicKey(privateKeyBase58);
 
-  //console.log("Mina Private Key:", privateKeyBase58);
-  console.log("Mina Public Key:", publicKey);
+    //console.log("Mina Private Key:", privateKeyBase58);
+    console.log("Mina Public Key:", publicKey);
 
-  if (messageToSign) {
-    const signed = client.signMessage(messageToSign, privateKeyBase58);
-    console.log("Message:", messageToSign);
-    console.log("Signature field:", signed.signature.field);
-    console.log("Signature scalar:", signed.signature.scalar);
+    if (messageToSign) {
+      const signed = client.signMessage(messageToSign, privateKeyBase58);
+      console.log("Message:", messageToSign);
+      console.log("Signature field:", signed.signature.field);
+      console.log("Signature scalar:", signed.signature.scalar);
 
-    const verified = client.verifyMessage(signed);
-    console.log("Message verified:", verified);
+      const verified = client.verifyMessage(signed);
+      console.log("Message verified:", verified);
+    }
+  } catch (error) {
+    console.error("ERROR:", error.message);
+    process.exit(1);
   }
 })();
