@@ -60,8 +60,10 @@ Build the Docker container:
 This step is essential to improve the security of your seed phrase and prevent unauthorized access to your private keys.  
 
 ### ✅ Things to do before proceeding:
-- Disconnect from Wi-Fi or unplug the Ethernet cable.
-- Ensure no active internet connections are available.
+- Disable Wi-Fi and unplug Ethernet
+- Ensure no active internet connections are available (example: `ping -c1 1.1.1.1`)
+- Disable automatic sleep/screen lock for duration of operation
+- Disable automatic screenshots/screen recording
 
 **🔒 Why is this important?**
 - Being offline prevents your sensitive data (such as the mnemonic or private keys) from being intercepted by malicious actors or malware.
@@ -72,8 +74,12 @@ This step is essential to improve the security of your seed phrase and prevent u
    docker run --read-only --tmpfs /tmp:rw,size=64M,noexec -it --rm --entrypoint /bin/bash offline-mina-signer
    # And then inside the container run
    node index.mjs "your mnemonic" "optional message" > /tmp/signer-output; clear; printf '\e[3J'; cat /tmp/signer-output
-   # Exit the container
+   # Then exit the container
    exit
+   ```
+   3. After exiting the container, clear your terminal (in case the above was not enough):
+   ```bash
+   clear && printf '\e[3J'  # Clears screen and scrollback buffer
    ```
 
    - Replace `"your mnemonic"` with your 12- or 24-word seed phrase.
