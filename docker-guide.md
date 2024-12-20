@@ -69,7 +69,11 @@ This step is essential to improve the security of your seed phrase and prevent u
 1. **Disconnect your machine from the internet**.
 2. Start a fresh, disposable container to run the script offline:
    ```bash
-   docker run --read-only -it --rm offline-mina-signer "your mnemonic" "optional message" > signer-output; clear; printf '\e[3J'; cat signer-output
+   docker run --read-only --tmpfs /tmp:rw,size=64M,noexec -it --rm --entrypoint /bin/bash offline-mina-signer
+   # And then inside the container run
+   node index.mjs "your mnemonic" "optional message" > /tmp/signer-output; clear; printf '\e[3J'; cat /tmp/signer-output
+   # Exit the container
+   exit
    ```
 
    - Replace `"your mnemonic"` with your 12- or 24-word seed phrase.
