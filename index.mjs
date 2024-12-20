@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { mnemonicToSeedSync } from 'bip39';
+import { mnemonicToSeedSync, validateMnemonic } from 'bip39';
 import { BIP32Factory } from 'bip32';
 import * as ecc from 'tiny-secp256k1';
 import bs58check from 'bs58check';
@@ -24,8 +24,11 @@ function reverseBytes(buffer) {
   return Buffer.from(arr);
 }
 
-function deriveMinaPrivateKey(mnemonic, accountIndex, addressIndex) {
-  const seed = mnemonicToSeedSync(mnemonic);
+function deriveMinaPrivateKey(mnemonic, accountIndex, addressIndex, passphrase = '') {
+  if (!validateMnemonic(mnemonic)) {
+    throw new Error("Invalid mnemonic phrase");
+  }
+  const seed = mnemonicToSeedSync(mnemonic, passphrase);
   const root = bip32.fromSeed(seed);
   const path = getHDpath(accountIndex, addressIndex);
 
@@ -48,20 +51,21 @@ function deriveMinaPrivateKey(mnemonic, accountIndex, addressIndex) {
 (async () => {
   const args = process.argv.slice(2);
   if (args.length < 1) {
-    console.error("Usage: node index.mjs \"mnemonic\" [message] [accountIndex]");
+    console.error("Usage: node index.mjs \"mnemonic\" [message] [accountIndex] [passphrase]");
     process.exit(1);
   }
 
   const mnemonic = args[0];
   const messageToSign = args[1];
   const accountIndex = args.length > 2 ? parseInt(args[2], 10) : 0; // Default account index is 0
+  const passphrase = args.length > 3 ? args[3] : ''; // Optional passphrase
 
   if (isNaN(accountIndex) || accountIndex < 0) {
     console.error("Invalid account index. Must be a non-negative integer.");
     process.exit(1);
   }
 
-  const privateKeyBase58 = deriveMinaPrivateKey(mnemonic, accountIndex, ADDRESS_INDEX);
+  const privateKeyBase58 = deriveMinaPrivateKey(mnemonic, accountIndex, ADDRESS_INDEX, passphrase);
   const publicKey = client.derivePublicKey(privateKeyBase58);
 
   //console.log("Mina Private Key:", privateKeyBase58);
