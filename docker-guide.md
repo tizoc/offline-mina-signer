@@ -2,9 +2,12 @@
 
 ⚠️ WARNING: UNTESTED. DO YOUR OWN RESEARCH. USE AT YOUR OWN RISK ⚠️
 
-## Using the Script Inside a Docker Container
+⚠️ SECURITY NOTICE:
+- This process has not undergone a security audit
+- For maximum security, perform these operations on an air-gapped machine that has never been and will never be connected to the internet
+- Transfer results using offline methods (USB drive, QR codes, paper)
 
-Follow these instructions to set up and use the script inside a disposable Docker container.
+## Using the Script Inside a Docker Container
 
 ### Step 0: Get the code from this repository
 
