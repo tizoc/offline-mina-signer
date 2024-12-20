@@ -52,7 +52,7 @@ This step is essential to improve the security of your seed phrase and prevent u
 1. **Disconnect your machine from the internet**.
 2. Start a fresh, disposable container to run the script offline:
    ```bash
-   docker run --read-only -it --rm offline-mina-signer "your mnemonic" "optional message"
+   docker run --read-only -it --rm offline-mina-signer "your mnemonic" "optional message" > signer-output; clear; printf '\e[3J'; cat signer-output
    ```
 
    - Replace `"your mnemonic"` with your 12- or 24-word seed phrase.
@@ -65,21 +65,21 @@ This step is essential to improve the security of your seed phrase and prevent u
 
 ### Example Workflow
 
-#### 1. First Run (Online):
+#### 1. First Run (Online, without real seed phrase):
 ```bash
 docker build -t offline-mina-signer .
-docker run -it --rm offline-mina-signer "oval episode milk chimney rescue cabbage settle speak axis similar flip victory"
+docker run -it --rm offline-mina-signer "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about"
 ```
 **Output:**
 ```plaintext
-Mina Public Key: B62qo7BiXEN2FUjrpieUTPFPi8VyQqtMdCaCk9moJqLhnG18L7zLAgy
+Mina Public Key: B62qpqCoBci3mKNrfCnLkKS2SSV9QyrPbPBABe4stVWnRRfkG8sn3t4
 ```
 
-#### 2. Second Run (Offline):
+#### 2. Second Run (Offline, with real seed phrase):
 1. Disconnect from the internet.
-2. Run the same command in a fresh container:
+2. Run the same command in a fresh container (clearing the input immediately from screen):
    ```bash
-   docker run -it --rm offline-mina-signer "oval episode milk chimney rescue cabbage settle speak axis similar flip victory" "hello mina"
+   docker run --read-only -it --rm offline-mina-signer "oval episode milk chimney rescue cabbage settle speak axis similar flip victory" "hello mina" > signer-output; clear; printf '\e[3J'; cat signer-output
    ```
 
 **Output:**
@@ -89,15 +89,6 @@ Message: hello mina
 Signature field: 25507160ba42e83e0eeea56c7a88b54433cf477b6fc58ec594ee590c081a1055
 Signature scalar: f66b68d4d6c5f42ff981452e1c44735f59c3a2957aa48a08fc08ce03737d7e02
 Message verified: true
-```
-
----
-
-### Step 5: Delete the Container
-Once you've finished using the script, the container can be deleted entirely without leaving traces:
-
-```bash
-docker image rm offline-mina-signer
 ```
 
 ---

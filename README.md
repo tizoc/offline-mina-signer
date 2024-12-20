@@ -64,6 +64,8 @@ Running this script directly on the host machine is not recommended due to the r
 - Ensure the machine is online **only while installing dependencies** and disconnect from the internet **before running the script**.
 - Use a trusted, secure environment with minimal risk of malware or compromise.
 - Avoid using a sensitive or primary mnemonic.
+- Use output redirection followed by immediate screen cleanup:
+   `node index.mjs ... > signer-output; clear; printf '\e[3J'; cat signer-output`
 
 **Proceed with caution.**
 
