@@ -80,17 +80,17 @@ Running this script directly on the host machine is not recommended due to the r
 
 ### Shell History Security:
 
-- Prevent command recording:
+- Use private/no-config shell modes with history disabled:
   ```bash
-  # For bash/zsh: prefix command with space
-   node index.mjs "your mnemonic"
-  
-  # Or use HISTSIZE=0
-  HISTSIZE=0 node index.mjs "your mnemonic"
-  
-  # For fish shell
-  set -x HISTFILE /dev/null
-```
+  # Fish: start clean session (disables history too)
+  fish --private --no-config
+
+  # Bash: start clean session with history disabled
+  env HISTFILE=/dev/null bash --noprofile --norc
+
+  # Zsh: start clean session with history disabled
+  env HISTFILE=/dev/null zsh -f
+  ```
 
 ## Dependencies
 
