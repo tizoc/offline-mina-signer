@@ -9,6 +9,8 @@
 
 ## Using the Script Inside a Docker Container
 
+⚠️ **Shell Security**: Consider using a clean shell session without history when running these commands. See [Shell History Security](README.md#shell-history-security) in the README.
+
 ### Step 0: Get the code from this repository
 
 Get the code using one of these methods:
