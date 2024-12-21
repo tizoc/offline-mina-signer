@@ -39,10 +39,14 @@ Build the Docker container:
    docker build -t offline-mina-signer .
    ```
 
+You can now disconnect from the internet.
+
 ---
 
 ### Step 3: Run the Container for the First Time
-1. Run the container interactively to verify it works:
+
+Run the container interactively to verify it works:
+
    ```bash
    docker run --read-only --log-driver=none -it --rm offline-mina-signer "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about"
    ```
@@ -52,8 +56,6 @@ Build the Docker container:
    ```
    Mina Public Key: B62qpqCoBci3mKNrfCnLkKS2SSV9QyrPbPBABe4stVWnRRfkG8sn3t4
    ```
-
-2. Once you confirm it works, you can disconnect from the internet.
 
 ---
 
