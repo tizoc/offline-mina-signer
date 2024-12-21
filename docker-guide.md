@@ -91,8 +91,10 @@ This step is essential to improve the security of your seed phrase and prevent u
       --ipc=private \
       --security-opt no-new-privileges \
       -it --rm --entrypoint /bin/bash offline-mina-signer
-   # And then inside the container run
+   
+   # Once inside the container run
    node index.mjs "your mnemonic" "optional message" > /tmp/signer-output; clear; printf '\e[3J'; cat /tmp/signer-output
+   
    # Then exit the container
    exit
    ```
