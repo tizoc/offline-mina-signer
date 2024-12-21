@@ -41,7 +41,7 @@ Build the Docker container:
 
 ---
 
-### Step 3: Run the Container for the First Time (Requires Internet)
+### Step 3: Run the Container for the First Time
 1. Run the container interactively to verify it works:
    ```bash
    docker run --read-only --log-driver=none -it --rm offline-mina-signer "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about"
