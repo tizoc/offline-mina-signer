@@ -74,8 +74,23 @@ Running this script directly on the host machine is not recommended due to the r
 - Avoid using a sensitive or primary mnemonic.
 - Use output redirection followed by immediate screen cleanup:
    `node index.mjs ... > signer-output; clear; printf '\e[3J'; cat signer-output`
+- Protect against shell history leaks (see [Shell History Security](#shell-history-security) below)
 
 **Proceed with caution.**
+
+### Shell History Security:
+
+- Prevent command recording:
+  ```bash
+  # For bash/zsh: prefix command with space
+   node index.mjs "your mnemonic"
+  
+  # Or use HISTSIZE=0
+  HISTSIZE=0 node index.mjs "your mnemonic"
+  
+  # For fish shell
+  set -x HISTFILE /dev/null
+```
 
 ## Dependencies
 
