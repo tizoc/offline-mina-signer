@@ -23,7 +23,7 @@ cd offline-mina-signer
 # Option 2: Download and extract
 curl -LO https://github.com/tizoc/offline-mina-signer/archive/refs/heads/master.zip
 unzip master.zip
-cd offline-mina-signer-main
+cd offline-mina-signer-master
 ```
 
 ### Step 1: Preparation (Requires Internet)
